@@ -1,0 +1,1 @@
+# Creating Static Directory.
