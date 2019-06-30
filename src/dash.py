@@ -15,39 +15,30 @@ def display(status,message,verbose):
 def process_local(output):
     if "Running on" in output:
         address = output[15:37]
-        print("LoL you just got the address :: "+address)
-    elif "active" in output:
-        status = "Running"
-        print("It can be bad or good but the status is :: "+status)
-    elif "127.0.0.1" in output:
-        print("-> "+output[37:])
+        print("[1/2] Local server is ready...")
+
+    elif '"GET / HTTP/1.1" 200 ' in output:
+        print("[~] Someone opened your Uploader... :)")
+
+    else:
+        http_code = output[-5:-2]
+        if http_code == 204:
+            print("\n------- Congrats ------")
+            print("File uploaded successfully :< ")
 
 
 def local(port,path):
-    print("Local is started ..\n")
     local_process = subprocess.Popen(['python3 ./local.py'],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,shell = True)
     for line in iter(local_process.stdout.readline, b''):
-        #print("-->"+str(line.rstrip()))
         process_local(str(line.rstrip()))
-    print("\n-----------------------Local End ------------------------------\n")
+
 
 def forward():
-    import requests
-    import json
-    print("Forward starts......\n")
-    ngrok = subprocess.Popen(['ngrok','http','5050'],stdout=subprocess.PIPE)
-    while True:
-        time.sleep(4)
-        tunnel_url = requests.get("http://localhost:4040/api/tunnels").text
-        if len(tunnel_url)!=2:
-            j = json.loads(tunnel_url)
-            tunnel_url = j['tunnels'][0]['public_url']
-            print(tunnel_url)
-            break
-        else:
-            print("Fetch again..!")
-    
-    print("\n-------------------- Forward end-------------------------------\n")
+    serveo = subprocess.Popen(['ssh','-R','80:localhost:5050','serveo.net'],stdout=subprocess.PIPE)
+    output = str(serveo.stdout.readline())
+    print("[2/2] Public Server started\n")
+    if "Forwarding" in output:
+        print("LINK :: "+output[-29:-5])
 
 
 if __name__ == "__main__":
@@ -73,10 +64,7 @@ if __name__ == "__main__":
     thread1 = threading.Thread(target=local,args=(args.port,args.path))
     thread2 = threading.Thread(target=forward)
 
-    print("[+] Thread is starting")
     thread1.start()
     thread2.start()
-    print("[~] You decide the correct ending. :<")
     thread1.join()
     thread2.join()
-    print("Finaly fuck all this...")
