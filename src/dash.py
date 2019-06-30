@@ -36,14 +36,17 @@ def forward():
     import json
     print("Forward starts......\n")
     ngrok = subprocess.Popen(['ngrok','http','5050'],stdout=subprocess.PIPE)
-    time.sleep(3)
-    tunnel_url = requests.get("http://localhost:4040/api/tunnels").text
-    j = json.loads(tunnel_url)
-    try:
-        tunnel_url = j['tunnels'][0]['public_url']
-        print(tunnel_url)
-    except IndexError:
-        print(j)
+    while True:
+        time.sleep(4)
+        tunnel_url = requests.get("http://localhost:4040/api/tunnels").text
+        if len(tunnel_url)!=2:
+            j = json.loads(tunnel_url)
+            tunnel_url = j['tunnels'][0]['public_url']
+            print(tunnel_url)
+            break
+        else:
+            print("Fetch again..!")
+    
     print("\n-------------------- Forward end-------------------------------\n")
 
 
