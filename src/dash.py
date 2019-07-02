@@ -16,7 +16,9 @@ def process_local(output):
     if "Running on" in output:
         address = output[15:37]
         print("[1/2] Local server is ready...")
-
+    else:
+        print("~~> ",output)
+    '''
     elif '"GET / HTTP/1.1" 200 ' in output:
         print("[~] Someone opened your Uploader... :)")
 
@@ -25,21 +27,19 @@ def process_local(output):
         if http_code == 204:
             print("\n------- Congrats ------")
             print("File uploaded successfully :< ")
-
+    '''
 
 def local(port,path):
     local_process = subprocess.Popen(['python3 ./local.py'],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,shell = True)
     for line in iter(local_process.stdout.readline, b''):
-        process_local(str(line.rstrip()))
+        process_local(str(line.decode('utf-8')))
 
+# packet_write_wait: Connection to 159.89.214.31 port 22: Broken pipe
 
 def forward():
     serveo = subprocess.Popen(['ssh','-R','80:localhost:5050','serveo.net'],stdout=subprocess.PIPE)
-    output = str(serveo.stdout.readline())
-    print("[2/2] Public Server started\n")
-    if "Forwarding" in output:
-        print("LINK :: "+output[-29:-5])
-
+    line = serveo.stdout.readline()
+    print(str(line.decode('utf-8')),end="")
 
 if __name__ == "__main__":
 
