@@ -28,4 +28,14 @@ def upload():
     return '',204
 
 if __name__ == "__main__":
-    app.run(port=5050, debug=True)
+
+    try:
+        import sys,argparse
+        parser = argparse.ArgumentParser()
+    except:
+        print("Moudle not found")
+
+    parser.add_argument('-port',help="Port address",default = 5050)
+
+    args = parser.parse_args()
+    app.run(port=args.port, debug=True)
