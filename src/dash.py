@@ -1,9 +1,11 @@
-from subprocess import Popen,PIPE
-import threading
-import os
+import time,subprocess
+
+def header():
+    print("\n\t\tDaSh")
+    print("\tFuckin logo lies here...!\n")
+
 
 def process_display(type,message):
-
     if type == 0:
         print("[OK] ~",message)
     elif type == 1:
@@ -11,11 +13,11 @@ def process_display(type,message):
     elif type == 2:
         print("[!] ~",message)
 
+def local(port,path):
 
-def local():
+    local_process = subprocess.Popen(['python3 ./local.py'],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,shell = True)
 
-    local_process = Popen(['python3 ./local.py'],stderr = PIPE,stdout = PIPE,shell = True)
-    for output in local_process.stderr:
+    for output in local_process.stdout:
         output=output.decode('utf-8')
         if "Traceback" in output:
             process_display(1,"Error due to usable port.")
@@ -24,24 +26,56 @@ def local():
             process_display(0,"[1/2] Local Server is started.")
 
         elif "127.0.0.1" in output:
-            http_code = int(output[-6:-2])
-            if http_code == 200:
+            out = str(output).split(' ')
+            if out[6] == '/':
                 process_display(0,"Someone Opened the page.")
-            elif http_code == 204:
+            elif out[-2] == '204':
                 process_display(0,"Upload Completed.")
 
 def forward():
-    forward_process = Popen(['ssh -R 80:localhost:5050 serveo.net'],stdout = PIPE, stderr = PIPE,shell = True)
-    print(forward_process.stderr.readline())
-    print("Koi scene hai kya  .. :/")
-    for output in forward_process.stdout:
-        print(output.decode('utf-8'))
+    import requests
+    import json
+
+    ngrok = subprocess.Popen(['ngrok','http','5017'],stdout=subprocess.PIPE)
+    process_display(0,"[2/2] Public Server is started.")
+    time.sleep(3)
+    tunnel_url = requests.get("http://localhost:4040/api/tunnels").text
+    j = json.loads(tunnel_url)
+    try:
+        tunnel_url = j['tunnels'][0]['public_url']
+        process_display(0,"The link for the page is : "+tunnel_url)
+    except IndexError:
+        process_display(2,"Rechecking the URLs in 4s :/ ")
+        time.sleep(4)
+        tunnel_url = requests.get("http://localhost:4040/api/tunnels").text
+        j = json.loads(tunnel_url)
+        tunnel_url = j['tunnels'][0]['public_url']
+        process_display(0,"The link for the page is : "+tunnel_url)
+
+    print("\n------------------------------- _^_ -------------------------------\n")
+
 
 if __name__ == "__main__":
-    print("\t\t  DASh \n\t Fucking logo lies here\n")
 
+    # Prints logo on console.
+    header()
 
-    thread1 = threading.Thread(target=local)
+    try:
+        import sys,argparse
+        parser = argparse.ArgumentParser()
+    except:
+        print("Moudle not found")
+
+    parser.add_argument('-port',help="Port address",required = False,default = 5050)
+    parser.add_argument('-path',help="Path to save file",required = False,default='/home/usr/Desktop/My')
+    parser.add_argument('-v',help="Verbose",default=False, action='store_true',required = False)
+
+    args = parser.parse_args()
+    verbose = args.v
+
+    import threading
+
+    thread1 = threading.Thread(target=local,args=(args.port,args.path))
     thread2 = threading.Thread(target=forward)
 
     thread1.start()
