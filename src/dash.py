@@ -13,30 +13,31 @@ def process_display(type,message):
     elif type == 2:
         print("[!] ~",message)
 
-def local(port,path):
+def local(port):
 
-    local_process = subprocess.Popen(['python3 ./local.py'],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,shell = True)
+    local_process = subprocess.Popen(['python3 ./local.py -port {}'.format(port)],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,shell = True)
 
     for output in local_process.stdout:
         output=output.decode('utf-8')
         if "Traceback" in output:
             process_display(1,"Error due to usable port.")
-
         elif "Running" in output:
             process_display(0,"[1/2] Local Server is started.")
-
+        elif "ClientIP" in output:
+            ClientIP = output[10:]
         elif "127.0.0.1" in output:
             out = str(output).split(' ')
             if out[6] == '/':
-                process_display(0,"Someone Opened the page.")
+                process_display(0,"Someone Opened the page at ")
             elif out[-2] == '204':
-                process_display(0,"Upload Completed.")
+                process_display(0,"Upload Completed by ")
 
-def forward():
+def forward(port):
+    
     import requests
     import json
 
-    ngrok = subprocess.Popen(['ngrok','http','5017'],stdout=subprocess.PIPE)
+    ngrok = subprocess.Popen(['ngrok','http',port],stdout=subprocess.PIPE)
     process_display(0,"[2/2] Public Server is started.")
     time.sleep(3)
     tunnel_url = requests.get("http://localhost:4040/api/tunnels").text
@@ -67,16 +68,14 @@ if __name__ == "__main__":
         print("Moudle not found")
 
     parser.add_argument('-port',help="Port address",required = False,default = 5050)
-    parser.add_argument('-path',help="Path to save file",required = False,default='/home/usr/Desktop/My')
-    parser.add_argument('-v',help="Verbose",default=False, action='store_true',required = False)
-
+   
     args = parser.parse_args()
-    verbose = args.v
+   
 
     import threading
 
-    thread1 = threading.Thread(target=local,args=(args.port,args.path))
-    thread2 = threading.Thread(target=forward)
+    thread1 = threading.Thread(target=local,args=(args.port,))
+    thread2 = threading.Thread(target=forward,args=(args.port,))
 
     thread1.start()
     thread2.start()
