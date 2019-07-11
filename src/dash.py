@@ -1,4 +1,4 @@
-import time,subprocess
+import time,subprocess,os
 
 def header():
     print("\n\t\tDaSh")
@@ -13,9 +13,9 @@ def process_display(type,message):
     elif type == 2:
         print("[!] ~",message)
 
-def local(port):
+def local(port,path):
 
-    local_process = subprocess.Popen(['python3 ./local.py -port {}'.format(port)],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,shell = True)
+    local_process = subprocess.Popen(['python3 ./local.py -port {} -path {}'.format(port,path)],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,shell = True)
 
     for output in local_process.stdout:
         output=output.decode('utf-8')
@@ -33,11 +33,10 @@ def local(port):
                 process_display(0,"Upload Completed by ")
 
 def forward(port):
-    
     import requests
     import json
 
-    ngrok = subprocess.Popen(['ngrok','http',port],stdout=subprocess.PIPE)
+    ngrok = subprocess.Popen(['ngrok','http',str(port)],stdout=subprocess.PIPE)
     process_display(0,"[2/2] Public Server is started.")
     time.sleep(3)
     tunnel_url = requests.get("http://localhost:4040/api/tunnels").text
@@ -68,13 +67,13 @@ if __name__ == "__main__":
         print("Moudle not found")
 
     parser.add_argument('-port',help="Port address",required = False,default = 5050)
-   
+    parser.add_argument('-path',help="Path to save file",required = False,default=os.path.expanduser('~')+'/Desktop')
+
     args = parser.parse_args()
-   
 
     import threading
 
-    thread1 = threading.Thread(target=local,args=(args.port,))
+    thread1 = threading.Thread(target=local,args=(args.port,args.path))
     thread2 = threading.Thread(target=forward,args=(args.port,))
 
     thread1.start()
