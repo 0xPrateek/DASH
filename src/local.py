@@ -5,19 +5,15 @@ __author__ = '0xprateek'
 
 app = Flask(__name__)
 
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-
 @app.route("/")
 def index():
     return render_template("index.html")
 
 @app.route("/upload", methods=['POST'])
 def upload():
-    target = os.path.join(APP_ROOT, 'images/')
-    print(target)
 
-    if not os.path.isdir(target):
-        os.mkdir(target)
+    target = os.path.join(args.path)
+    print(target)
 
     for file in request.files.getlist("file"):
         print(file)
@@ -35,7 +31,9 @@ if __name__ == "__main__":
     except:
         print("Moudle not found")
 
-    parser.add_argument('-port',help="Port address",default = 5050)
+    parser.add_argument('-port',help="Port address")
+    parser.add_argument('-path',help="Path address")
 
     args = parser.parse_args()
+
     app.run(port=args.port, debug=True)
