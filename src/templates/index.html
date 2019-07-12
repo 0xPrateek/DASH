@@ -1,0 +1,62 @@
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DASH</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300'>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/normalize.css') }}">
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/uploader.js') }}"></script>
+</head>
+
+<body>
+
+    <div class="upload">
+        <div class="upload-files">
+            <header>
+                <img src="{{ url_for('static',filename='logo.png') }}" height="auto" width="100%">
+            </header>
+            <hr style="border: 2px solid #4db6ac;" />
+            <div id = "body-elements">
+              <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+                  <div id = "name1">
+                  <center>Files</center>
+                </div>
+                <center>
+                  <input id="file-picker" type="file" name="file" accept="image/*" multiple>
+                </center>
+                <center>
+                      <input type="submit" value="Upload!" id="upload-button" onclick="upload()">
+                    </center>
+                    </br>
+                      <fieldset id="progress" style="display: none">
+                          <legend>Files Progress</legend>
+                          <div class="progress-trough">
+                              <div id="progress-bar" class="progress-bar">0%</div>
+                          </div>
+                      </fieldset>
+              </form>
+            </div>
+            <footer>
+                <div class="divider">
+                    <span><AR>Files</AR></span>
+                </div>
+                <div class="list-files">
+                    <!--   template   -->
+                </div>
+                <center>
+                    <button class="importar">Done</button>
+                </center>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
