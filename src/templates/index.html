@@ -6,7 +6,6 @@
     <title>DASH</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300'>
-    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
     <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
@@ -30,7 +29,7 @@
                   <center>Files</center>
                 </div>
                 <center>
-                  <input id="file-picker" type="file" name="file" accept="image/*" multiple>
+                  <input id="file-picker" type="file" name="file" multiple>
                 </center>
                 <center>
                       <input type="submit" value="Upload!" id="upload-button" onclick="upload()">
