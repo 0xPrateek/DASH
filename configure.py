@@ -1,14 +1,15 @@
 try:
-    import platform,subprocess,colors
+    import platform,subprocess
+    import src.colors as colors
 except:
-    print(1,1,"Module not found\n    Make sure you have installed 'requirements.txt' and configured DASH")
+    print("Module not found\n    Make sure you have installed 'requirements.txt' and configured DASH")
     import sys
     sys.exit(0)
 
 def header():
     print('\n\t\t{}-{} DASH {}Configration -{}\n'.format(colors.red,colors.white,colors.red,colors.white))
     print('    [ Only if Ngrok is not configured on your Device. ]{}\n'.format(colors.red,colors.white,colors.white))
-
+    print(colors.green,"             Make sure you run it as ROOT",colors.white,"\n")
 
 if __name__ == '__main__':
 
