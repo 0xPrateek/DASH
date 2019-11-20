@@ -20,7 +20,10 @@
   </a>
 </p>
 
-## About [DaSh](https://github.com/0xprateek/stardox)
+## About [DASH](https://github.com/0xprateek/Dash)
 
-The DaSh means, Data sharing. It's made for providing faster, safer and elegent way to transfer files between two users.
+The DASH means, Data sharing. It's made for providing faster, safer and elegent way to transfer files between two users.
 -- Repository Under Development --
+<h1 align="center">
+<a href="https://github.com/0xprateek/DASH"><img src="https://github.com/0xPrateek/DASH/blob/master/Logo/DASH.gif" alt="DaSh"></a>
+  </h1>
