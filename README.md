@@ -27,3 +27,25 @@ The DASH means, Data sharing. It's made for providing faster, safer and elegent 
 <h1 align="center">
 <a href="https://github.com/0xprateek/DASH"><img src="https://github.com/0xPrateek/DASH/blob/master/Logo/DASH.gif" alt="DaSh"></a>
   </h1>
+
+### Getting Started
+
+#### Steps to setup :
+
+1. `git clone https://github.com/0xprateek/dash`
+2. `cd dash`
+3. `pip install -r requirements.txt`
+4. `sudo python3 ./configure.py`
+
+#### Starting Stardox :
+
+1. `cd dash/src`<br/>
+2.  `python3 ./dash.py`
+
+
+
+### Contributing
+Any and all contributions, issues, features and tips are welcome.
+
+### License
+**DASH** is licence under [GPL v3.0 license](https://www.gnu.org/licenses/gpl-3.0.en.html)
