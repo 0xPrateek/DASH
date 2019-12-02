@@ -34,18 +34,6 @@ DASH is a CLI tool for faster, safer and Smarter way to transfer files between t
 
 ### Getting Started
 
-#### Steps to setup :
-
-1. `git clone https://github.com/0xprateek/dash`
-2. `cd dash`
-3. `pip install -r requirements.txt`
-4. `sudo python3 ./configure.py`
-
-#### Starting DASH :
-
-1. `cd dash/src`<br/>
-2. `python3 ./dash.py`
-
 #### How it works 
 
 - The **Reciever** has to start DASH first on his device.
@@ -57,6 +45,17 @@ DASH is a CLI tool for faster, safer and Smarter way to transfer files between t
 <a href="https://github.com/0xprateek/DASH"><img src="https://github.com/0xPrateek/DASH/blob/master/Logo/DASH.gif" alt="DaSh"></a>
 </h1>
 
+#### Steps to setup :
+
+1. `git clone https://github.com/0xprateek/dash`
+2. `cd dash`
+3. `pip install -r requirements.txt`
+4. `sudo python3 ./configure.py`
+
+#### Starting DASH :
+
+1. `cd dash/src`<br/>
+2. `python3 ./dash.py`
 
 ### Contributing
 Any and all contributions, issues, features and tips are welcome.
