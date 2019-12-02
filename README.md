@@ -15,9 +15,10 @@
   </a> 
   <a href="https://github.com/0xprateek/Dash">
     <img src="https://img.shields.io/badge/OS-Linux-black.svg">
-    <img src="https://img.shields.io/badge/OS-Windows-blue.svg">
     <img src="https://img.shields.io/badge/OS-Mac-Red.svg">
   </a>
+  <a href="https://gitter.im/DASH_github/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"><img src="https://badges.gitter.im/DASH_github/community.svg" alt="DaSh"></a>
+
 </p>
 
 ## About [DASH](https://github.com/0xprateek/Dash)
