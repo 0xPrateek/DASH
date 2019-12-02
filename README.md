@@ -23,11 +23,14 @@
 
 ## About [DASH](https://github.com/0xprateek/Dash)
 
-The DASH means, Data sharing. It's made for providing faster, safer and elegent way to transfer files between two users.
--- Repository Under Development --
-<h1 align="center">
-<a href="https://github.com/0xprateek/DASH"><img src="https://github.com/0xPrateek/DASH/blob/master/Logo/DASH.gif" alt="DaSh"></a>
-  </h1>
+DASH is a CLI tool for faster, safer and Smarter way to transfer files between two users.</br>
+
+### Features 
+- Share file of any size.
+- Secured file transfer.
+- A geeky way to transfer files.
+- Direct transfer with a link (No need to share your email, whatsapp no. for transfer).
+- Recieve file only when you want (Till DASH is running).
 
 ### Getting Started
 
@@ -41,8 +44,18 @@ The DASH means, Data sharing. It's made for providing faster, safer and elegent 
 #### Starting Stardox :
 
 1. `cd dash/src`<br/>
-2.  `python3 ./dash.py`
+2. `python3 ./dash.py`
 
+#### How it works 
+
+- The **Reciever** has to start DASH first on his device.
+- It will give you a web link which you have to share with the person **Sender**.
+- Then **Sender** need to open that web link in a web browser which has a file uploader and upload the file.
+- At **Reciever** end, the file gets recived at Desktop(Default Location).
+
+<h1 align="center">
+<a href="https://github.com/0xprateek/DASH"><img src="https://github.com/0xPrateek/DASH/blob/master/Logo/DASH.gif" alt="DaSh"></a>
+</h1>
 
 
 ### Contributing
