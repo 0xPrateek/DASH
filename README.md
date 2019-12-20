@@ -52,6 +52,13 @@ DASH is a CLI tool for faster, safer and Smarter way to transfer files between t
 3. `pip install -r requirements.txt`
 4. `sudo python3 ./configure.py`
 
+#### Getting ngrok authtoken :
+
+1. Go to `https://ngrok.com/`
+2. Login/Signup to your account.
+3. Copy your authentication token from `Auth` section.
+4. Paste it in the terminal.
+
 #### Starting DASH :
 
 1. `cd dash/src`<br/>
