@@ -52,10 +52,31 @@ DASH is a CLI tool for faster, safer and Smarter way to transfer files between t
 3. `pip install -r requirements.txt`
 4. `sudo python3 ./configure.py`
 
+#### Getting ngrok authtoken :
+
+1. Go to `https://ngrok.com/`
+2. Login/Signup to your account.
+3. Copy your authentication token from `Auth` section.
+4. Paste it in the terminal.
+
 #### Starting DASH :
 
 1. `cd dash/src`<br/>
-2. `python3 ./dash.py`
+2.  a)  **Using Command line arguments**<br/>
+          `python3 ./dash.py -path /home/user/Documents`<br/>
+          `python3 ./dash.py -port 7000`<br/>
+    b)  **Without Command line arguments**<br/>
+          `python3 ./dash.py`
+
+  #### Usage :
+     python3 ./dash.py [-h] [-port PORT] [-path PATH] [-v]
+
+  ##### optional arguments:
+     -h, --help  show this help message and exit
+     -port PORT  Port address
+     -path PATH  Path to save file
+     -v          Verbose
+
 
 ### Contributing
 Any and all contributions, issues, features and tips are welcome.
