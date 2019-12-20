@@ -64,6 +64,16 @@ DASH is a CLI tool for faster, safer and Smarter way to transfer files between t
 1. `cd dash/src`<br/>
 2. `python3 ./dash.py`
 
+  #### Usage :
+     python3 ./dash.py [-h] [-port PORT] [-path PATH] [-v]
+
+  ##### optional arguments:
+     -h, --help  show this help message and exit
+     -port PORT  Port address
+     -path PATH  Path to save file
+     -v          Verbose
+
+
 ### Contributing
 Any and all contributions, issues, features and tips are welcome.
 
