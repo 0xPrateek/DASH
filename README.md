@@ -63,8 +63,8 @@ DASH is a CLI tool for faster, safer and Smarter way to transfer files between t
 
 1. `cd dash/src`<br/>
 2.  a)  **Using Command line arguments**<br/>
-          `python3 ./dash.py -path /home/user/Documents`
-          `python3 ./dash.py -port 7000`
+          `python3 ./dash.py -path /home/user/Documents`<br/>
+          `python3 ./dash.py -port 7000`<br/>
     b)  **Without Command line arguments**<br/>
           `python3 ./dash.py`
 
